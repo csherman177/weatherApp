@@ -2,6 +2,9 @@ var searchBtn = document.querySelector("#search-btn"); // Search button
 var searchInput = document.querySelector("#city-input"); // Input for Search
 var weatherResultsEl = document.querySelector("#first");
 var weatherData = [];
+var parentEl = document.querySelector("#parent"); // Parent element for search results
+var resultsContainerEl = document.createElement("div"); // Container for search results
+parentEl.appendChild(resultsContainerEl); // Append container to parent element
 
 var API_KEY = "33bf6212a02f55406c312de7ffdcf207";
 var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?appid=" + API_KEY;
@@ -20,7 +23,7 @@ function weather() {
         var forecast = data.list;
 
         // clear previous results
-        weatherResultsEl.innerHTML = "";
+        //weatherResultsEl.innerHTML = "";
 
         // get the weather data for every day for the next 5 days
         var dailyWeather = [];
@@ -55,6 +58,9 @@ function weather() {
 
           // append the elements to the day's weather div
           dayEl.append(dateEl, tempEl, windEl, humidityEl);
+
+           // append the div to the results container
+           resultsContainerEl.appendChild(dayEl);
 
           // append the div to the results container
           weatherResultsEl.appendChild(dayEl);
