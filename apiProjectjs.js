@@ -27,14 +27,15 @@ function weather() {
 
         // get the weather data for every day for the next 5 days
         forecast.forEach(function (day) {
-          if (
-            day.dt_txt &&
-            day.dt_txt.split(" ")[0] >= currentDate &&
-            dailyWeather.length < 5
-          ) {
+          // get the date and time of the forecast
+          var [date, time] = day.dt_txt.split(" ");
+          
+          // only include forecasts for 12PM
+          if (time === "12:00:00" && date >= currentDate && dailyWeather.length < 5) {
             dailyWeather.push(day);
           }
         });
+        
 
         // create a div for each day's weather forecast
         dailyWeather.forEach(function (day) {
