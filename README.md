@@ -1,21 +1,21 @@
 # weatherApp
 
 ## Description 
-// The scope of this project is to create a responsive interface HTML, JavaScript and CSS. The user will follow prompts to generate a random password. The randomly generated password will feature a combination of numbers, upper and lowercase letters and special characters. 
+// The scope of this project is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS. 
 
 ## Project URL
-  https://github.com/csherman177/PasswordGenerator
+ https://github.com/csherman177/weatherApp 
 
 ## Deployment
-  https://csherman177.github.io/PasswordGenerator/ 
+https://csherman177.github.io/weatherApp/
 
 ## Demo/Screenshots
   <table>
   <tr>
-    <td>Password Generator Screenshot</td>
+    <td>Weather Dashboard</td>
   </tr>
   <tr>
-    <td><img src= "" height=300 alt="screenshot of password generator"></td>
+    <td><img src= "weatherAPI.png" height=300 alt="screenshot of weatehr dashboard"></td>
   </tr>
   </table>
  
