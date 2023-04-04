@@ -9,7 +9,7 @@ var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?appid=" + API
 function weather() {
   var city = searchInput.value;
   var queryUrl = weatherUrl + "&q=" + city;
-  var currentDate = new Date().toISOString().split("T")[0]; // define currentDate here
+  var currentDate = new Date().toISOString().split("T")[0]; 
 
   fetch(queryUrl)
     .then(function (response) {
@@ -19,41 +19,40 @@ function weather() {
       if (data.list) {
         var forecast = data.list;
 
-          // get the weather data for every day for the next 5 days
+          // weather data string
         var dailyWeather = [];
 
-        // get the weather data for every day for the next 5 days
+        // weather data for every day for the next 5 days
         forecast.forEach(function (day) {
-          // get the date and time of the forecast
+          // date and time of the forecast
           var [date, time] = day.dt_txt.split(" ");
           
-          // only include forecasts for 12PM
+          // forecast for 12PM
           if (time === "12:00:00" && date >= currentDate && dailyWeather.length < 5) {
             dailyWeather.push(day);
           }
         });
         
-
         // create a div for each day's weather forecast
         dailyWeather.forEach(function (day) {
           var dayEl = document.createElement("div");
-
+          dayEl.classList.add('col')
           // create elements for the weather data
-          var dateEl = document.createElement("h3");
+          var dateEl = document.createElement("h3");          
           var tempEl = document.createElement("p");
           var windEl = document.createElement("p");
           var humidityEl = document.createElement("p");
-          //var iconEl = document.createElement("i";) //create icon element
+          var iconEl = document.createElement("img"); //create icon element
 
           // add data to the elements
           dateEl.textContent = day.dt_txt.split(" ")[0];
           tempEl.textContent = "Temperature: " + day.main.temp;
           windEl.textContent = "Wind: " + day.wind.speed;
           humidityEl.textContent = "Humidity: " + day.main.humidity;
-          //iconEl.classList.add("fa-solid fa-cloud"); 
+          iconEl.setAttribute('src','https://openweathermap.org/img/w/'+ day.weather[0].icon +'.png' )
 
           // append the elements to the day's weather div
-          dayEl.append(dateEl, tempEl, windEl, humidityEl,);          
+          dayEl.append(dateEl, tempEl, windEl, humidityEl, iconEl);          
 
          // append the div to the results container
           weatherResultsEl.appendChild(dayEl);
@@ -81,7 +80,7 @@ function weather() {
       searchInput.value = city;
       weather();
   });
-
+    }
   // append the button to the HTML element
   var searchedCitiesListEl = document.querySelector("#searched-cities-list");
   
